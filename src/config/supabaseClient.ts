@@ -1,5 +1,12 @@
-import { createClient } from "@supabase/supabase-js";
+import { SupabaseClient, createClient } from "@supabase/supabase-js";
 import { SUPABASE_ANON_KEY, SUPABASE_URL } from "../lib/vars";
 
-export const supabase = createClient(SUPABASE_URL!, SUPABASE_ANON_KEY!)
+let supabase: SupabaseClient | null = null
+
+export const getSupabaseClient = () => {
+  if(!supabase) {
+    supabase = createClient(SUPABASE_URL!, SUPABASE_ANON_KEY!)
+  }
+  return supabase
+}
 

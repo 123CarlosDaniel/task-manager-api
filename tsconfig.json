@@ -1,17 +1,22 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "CommonJS",
-    "rootDir": "./src",
-    "outDir": "./dist",
+    "target": "es6",
+    "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
-    "noUnusedParameters": false,
-    "noUnusedLocals": false,
+    "skipLibCheck": true,
+    "baseUrl": "./src",
+    "types": [
+      "node",
+      "express"
+    ],
+    "typeRoots": [
+      "src/types",
+    ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["*"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts"],
   "exclude": ["node_modules"]
 }

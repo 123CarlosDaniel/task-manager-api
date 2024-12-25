@@ -20,7 +20,7 @@ export const attachSupabaseClient = async (
   })
 
   if (error) {
-    console.log(error)
+    console.log(error.message)
     return res.status(401).json({ error: "Unauthorized" })
   }
   req.supabase = supabase

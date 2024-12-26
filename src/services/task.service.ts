@@ -33,7 +33,7 @@ export const postTaskService = async (
     description: payload.description,
     state: payload.state,
     id_user: payload.id_user,
-  })
+  }).select("*")
 
   return response
 }
@@ -60,11 +60,11 @@ export const verifyExistenceService = async (
   taskId: string,
   userId: string
 ) => {
-  const response = await supabase
+  const {error, data} = await supabase
     .from("tasks")
     .select("id")
     .eq("id", taskId)
     .eq("id_user", userId)
-  if (!response.data || response.data.length === 0) return false
+  if (error || data.length === 0) return false
   return true
 }

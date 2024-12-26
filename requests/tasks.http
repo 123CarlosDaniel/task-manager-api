@@ -1,0 +1,33 @@
+
+GET {{baseUrl}}/tasks 
+Authorization: {{token}}
+x-refresh-token: {{refresh_token}}
+
+###
+POST {{baseUrl}}/tasks
+Authorization: {{token}}
+x-refresh-token: {{refresh_token}}
+Content-Type: application/json
+
+{
+  "title": "Create new app",
+  "description": "Develop task with typescript",
+  "state": 0
+}
+
+###
+PUT {{baseUrl}}/tasks/10
+Authorization: {{token}}
+x-refresh-token: {{refresh_token}}
+Content-Type: application/json
+
+{
+  "title": "Create a web app",
+  "description": "Develop crud api with nextjs",
+  "state": 0
+}
+
+###
+DELETE {{baseUrl}}/tasks/2
+Authorization: {{token}}
+x-refresh-token: {{refresh_token}}

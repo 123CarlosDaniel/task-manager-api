@@ -1,4 +1,5 @@
 import {
+  deleteTaskService,
   getTasksService,
   postTaskService,
   putTaskService,
@@ -92,8 +93,25 @@ export const PutTaskController = async (req: Request, res: Response) => {
 
 export const deleteTaskController = async (req: Request, res: Response) => {
   try{
+    const supabase = req.supabase
+    const {error, data: userData} = await supabase.auth.getUser()
+    if (error) return res.status(401).json({ error: "Unauthorized" })
 
+    const taskId = req.params.id
+    if (taskId === undefined)
+      return res.status(400).json({ error: "Missing required fields" })
 
+    const exist = await verifyExistenceService(supabase, taskId, userData.user!.id)
+    if (!exist) {
+      return res.status(400).json({ error: "Task not found" })
+    }
+    
+    const {error: deleteError} = await deleteTaskService(supabase, taskId, userData.user!.id)
+    if (deleteError) {
+      return res.status(400).json({ error: deleteError.message })
+    }
+
+    return res.status(200).json({ message: "Task deleted successfully" })
   } catch(error) {
     return res.status(500).json({ error: "Internal server error" })
   }

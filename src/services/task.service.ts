@@ -55,6 +55,19 @@ export const putTaskService = async (
   return response
 }
 
+export const deleteTaskService = async(
+  supabase: SupabaseClient,
+  taskId: string,
+  userId: string
+) => {
+  const response = await supabase
+    .from("tasks")
+    .delete()
+    .eq("id", taskId)
+    .eq("id_user", userId)
+  return response
+}
+
 export const verifyExistenceService = async (
   supabase: SupabaseClient,
   taskId: string,

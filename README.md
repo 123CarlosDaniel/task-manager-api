@@ -96,3 +96,7 @@ npm run start
 npm run dev
 ```
 
+### 7. Ejecuta los test de integración:
+```bash
+npm test
+```

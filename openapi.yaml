@@ -1,0 +1,156 @@
+openapi: 3.0.0
+info:
+  title: Task Manager API
+  version: 1.0.0
+  description: API para gestionar tareas
+servers:
+  - url: http://localhost:3000/api
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    RefreshTokenHeader:
+      name: x-refresh-token
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Token para refrescar el acceso
+paths:
+  /auth/login:
+    post:
+      summary: Iniciar sesión
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Nombre de usuario
+                password:
+                  type: string
+                  description: Contraseña
+      responses:
+        '200':
+          description: Token de acceso
+          content:
+            application/json:
+              schema:
+                type: object 
+  /tasks:
+    get:
+      summary: Obtener todas las tareas
+      tags:
+        - Tasks
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/RefreshTokenHeader'
+      responses:
+        '200':
+          description: Lista de tareas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: ID de la tarea
+                    title:
+                      type: string
+                      description: Título de la tarea
+                    description:
+                      type: string
+                      description: Descripción de la tarea
+                    state:
+                      type: string
+                      description: Estado de la tarea
+    post:
+      summary: Crear una nueva tarea
+      tags:
+        - Tasks
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/RefreshTokenHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: Título de la tarea
+                description:
+                  type: string
+                  description: Descripción de la tarea
+                state:
+                  type: number
+                  description: Estado de la tarea
+      responses:
+        '201':
+          description: Tarea creada
+  /tasks/{id}:
+    put:
+      summary: Actualizar una tarea existente
+      tags:
+        - Tasks
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/RefreshTokenHeader'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID de la tarea
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: Título de la tarea
+                description:
+                  type: string
+                  description: Descripción de la tarea
+                state:
+                  type: number
+                  description: Estado de la tarea
+      responses:
+        '200':
+          description: Tarea actualizada
+    delete:
+      summary: Eliminar una tarea
+      tags:
+        - Tasks
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/RefreshTokenHeader'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID de la tarea
+      responses:
+        '200':
+          description: Tarea eliminada

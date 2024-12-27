@@ -28,6 +28,6 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{baseUrl}}/tasks/2
+DELETE {{baseUrl}}/tasks/1
 Authorization: {{token}}
 x-refresh-token: {{refresh_token}}

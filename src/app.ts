@@ -39,6 +39,14 @@ app.use(
 app.use(cors(corsOptions))
 app.use(morgan("dev"))
 
+app.get("/", (req, res) => {
+  res.json({
+    message: "Hello World",
+    version: "1.0.0",
+    status: "success",
+    docs: "/api-docs",
+  })
+})
 app.use("/api/auth", authRoutes)
 app.use("/api/tasks", taskRoutes)
 

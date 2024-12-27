@@ -28,12 +28,15 @@ export const postTaskService = async (
   supabase: SupabaseClient,
   payload: TaskPayload
 ) => {
-  const response = await supabase.from("tasks").insert({
-    title: payload.title,
-    description: payload.description,
-    state: payload.state,
-    id_user: payload.id_user,
-  }).select("*")
+  const response = await supabase
+    .from("tasks")
+    .insert({
+      title: payload.title,
+      description: payload.description,
+      state: payload.state,
+      id_user: payload.id_user,
+    })
+    .select("*")
 
   return response
 }
@@ -55,7 +58,7 @@ export const putTaskService = async (
   return response
 }
 
-export const deleteTaskService = async(
+export const deleteTaskService = async (
   supabase: SupabaseClient,
   taskId: string,
   userId: string
@@ -73,7 +76,7 @@ export const verifyExistenceService = async (
   taskId: string,
   userId: string
 ) => {
-  const {error, data} = await supabase
+  const { error, data } = await supabase
     .from("tasks")
     .select("id")
     .eq("id", taskId)

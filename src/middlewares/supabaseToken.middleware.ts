@@ -11,12 +11,12 @@ export const attachSupabaseClient = async (
   if (!token || !refreshToken) {
     return res.status(401).json({ error: "Unauthorized" })
   }
-  
+
   const supabase = getSupabaseClient()
-  
+
   const { error } = await supabase.auth.setSession({
     access_token: token,
-    refresh_token: refreshToken
+    refresh_token: refreshToken,
   })
 
   if (error) {

@@ -11,6 +11,7 @@ API: https://task-manager-api-6ubk.onrender.com
 
 - Crear, leer, actualizar y eliminar tareas.
 - Gestión del estado de las tareas (pendiente, en progreso, completada).
+- Implementación de **test de integración**.
 - Validación de datos en los endpoints.
 - Integración con **OpenAPI** para documentación de la API.
 - Arquitectura limpia y tipada gracias a **TypeScript**.

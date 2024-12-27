@@ -9,6 +9,9 @@ import { middleware } from "express-openapi-validator"
 import path from "path"
 
 const app = express()
+
+app.use(cors(corsOptions))
+
 app.use(express.json())
 
 // configurar swagger UI
@@ -36,7 +39,6 @@ app.use(
   })
 )
 
-app.use(cors(corsOptions))
 app.use(morgan("dev"))
 
 app.get("/", (req, res) => {

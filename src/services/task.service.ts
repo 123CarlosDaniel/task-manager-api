@@ -50,7 +50,7 @@ export const putTaskService = async (
     .update({
       ...(payload.title && { title: payload.title }),
       ...(payload.description && { description: payload.description }),
-      ...(payload.state && { state: payload.state }),
+      ...(payload.state !== undefined && { state: payload.state }),
     })
     .eq("id", payload.id)
     .eq("id_user", payload.id_user)

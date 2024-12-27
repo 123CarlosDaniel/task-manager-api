@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: API para gestionar tareas
 servers:
-  - url: http://localhost:3000/api
+  - url: https://task-manager-api-6ubk.onrender.com/api
 components:
   securitySchemes:
     BearerAuth:

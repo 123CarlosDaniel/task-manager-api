@@ -2,6 +2,9 @@
 
 Este es el backend para el proyecto "Task Manager", desarrollado con Express, TypeScript y Supabase. Proporciona una API REST para gestionar tareas.
 
+La API está desplegada y disponible en la siguiente URL:
+API: https://task-manager-api-6ubk.onrender.com
+
 --- 
 
 ## Características

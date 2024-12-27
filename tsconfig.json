@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "ES2019",
     "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
@@ -10,11 +10,15 @@
       "express"
     ],
     "typeRoots": [
-      "src/types",
+      "./src/types",
+      "./node_modules/@types",
     ],
     "paths": {
       "@/*": ["*"]
-    }
+    },
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "resolveJsonModule": true
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts"],
   "exclude": ["node_modules"]

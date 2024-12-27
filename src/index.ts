@@ -1,3 +1,4 @@
+import "tsconfig-paths/register"
 import app from "./app"
 import { API_PORT } from "./lib/vars"
 
